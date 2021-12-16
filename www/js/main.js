@@ -50,7 +50,10 @@ var BB = {
             [null,      null,       'red',      'red',       null,       null,       null,       'silver',   'silver',   null],    
             [null,      null,       null,       'red',      'red',       null,       'silver',   'silver',   null,       null],    
             [null,      null,       null,       null,       'silver',   'silver',   'silver',   null,       null,       null],
-            [null,      null,       null,       null,       null,       'silver',   null,       null,       null,       null]
+            [null,      null,       null,       null,       null,       null,   null,       null,       null,       null],
+            [null,      null,       null,       null,       null,       null,   null,       null,       null,       null],
+            [null,      null,       null,       null,       null,       null,   null,       null,       null,       null],
+            ['silver',      'silver',       'silver',       'silver',       'silver',   'silver',   'silver',   'silver',       'silver',       'silver'],
         ];
         
         var position = parseInt(BB.renderer.width * 0.5) - (5 * 30)
