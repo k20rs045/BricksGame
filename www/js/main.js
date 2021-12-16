@@ -272,14 +272,15 @@ var BB = {
     endGame: function() {
         BB.gameState = GAMESTATE_STOP;
         vibrate();
+        save_mb(BB.score);
     },
     
     // Game Clear
     clearGame: function() {
         if(typeof navigator.notification !== 'undefined') navigator.notification.alert("Cleared!", function(){}, "Congraturations");
         else alert("Cleared!");
-        
         BB.gameState = GAMESTATE_STOP;
+        save_mb(BB.score);
     }
 }
 
