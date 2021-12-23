@@ -44,8 +44,8 @@ var BB = {
         var blockMap = [
             [null,      null,       null,       null,       null,       'blue',     null,       null,       null,       null],
             [null,      null,       null,       null,       'red',      'red',      'blue',     null,       null,       null],
-            [null,      null,       null,       'red',      'red',      null,       null,       'blue',     null,       null],
-            [null,      null,       'red',      'red',      null,       null,       null,       null,       'blue',     null],    
+            [null,      null,       null,       'red',      'red',      null,       'blue',       'blue',     null,       null],
+            [null,      null,       'red',      'red',      null,       null,       null,       'blue',       'blue',     null],    
             [null,      'red',      'red',      null,       null,       'gold',     null,       null,       'silver',   'silver'],    
             [null,      null,       'red',      'red',       null,       null,       null,       'silver',   'silver',   null],    
             [null,      null,       null,       'red',      'red',       null,       'silver',   'silver',   null,       null],    
@@ -239,6 +239,21 @@ var BB = {
         BB.scoreLabel.position.y = 20;
         BB.stage.addChild(BB.scoreLabel);
         BB.setScore(0);
+
+        // MARK: ランキング一覧表示ボタン追加
+        var rankingLabel = new PIXI.Text("RANKING", {font: "24px/1.2 vt", fill: "red"});
+        rankingLabel.position.x = 285;
+        rankingLabel.position.y = BB.renderer.height - 52;
+        BB.stage.addChild(rankingLabel);
+        rankingLabel.buttonMode = true;
+        rankingLabel.interactive = true;
+        rankingLabel.click = rankingLabel.tap = function(data) {
+            // 【ncmb】ランキング取得
+            get_mb();
+        };
+        setTimeout(function() {
+            rankingLabel.setText("RANKING"); //for Android
+        }, 1000, rankingLabel);
         
         /*
         var label = new PIXI.Text("ACCEL:", {font: "24px/1.2 vt", fill: "red"});
