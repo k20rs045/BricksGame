@@ -34,15 +34,14 @@ function get_mb() {
     for (var i=0; i<objects.length; i++) {
         var name = objects[i].get("name");
         var score = objects[i].get("score");
-        result = result + "\n " + (i+1) + "番: "+ name + "さん - " + score + "点" + "\n";
+        result = result + "\n " + (i+1) + "番: "+ name + "さん - " + score + "点";
     }
     //alert(result);
-    return result;
+    
   })
   .catch(function(err){
     console.log("Error: " + err);
   })
-  //return result;
 }
 
 

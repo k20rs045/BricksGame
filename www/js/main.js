@@ -252,7 +252,7 @@ var BB = {
             var result = get_mb();
             var rankingTable = new PIXI.Text(result, {font: "24px/1.2 vt", fill: "red"});
             rankingTable.position.x = 50;
-            rankingTable.position.y = 200;
+            rankingTable.position.y = 220;
             BB.stage.addChild(rankingTable);
         };
         setTimeout(function() {
