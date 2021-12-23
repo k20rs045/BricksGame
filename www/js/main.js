@@ -249,7 +249,11 @@ var BB = {
         rankingLabel.interactive = true;
         rankingLabel.click = rankingLabel.tap = function(data) {
             // 【ncmb】ランキング取得
-            get_mb();
+            var result = get_mb();
+            var rankingTable = new PIXI.Text(result, {font: "24px/1.2 vt", fill: "red"});
+            rankingTable.position.x = 50;
+            rankingTable.position.y = 200;
+            BB.stage.addChild(rankingTable);
         };
         setTimeout(function() {
             rankingLabel.setText("RANKING"); //for Android
