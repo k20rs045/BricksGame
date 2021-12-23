@@ -1,5 +1,10 @@
 (function() {
     
+var ncmb = new NCMB("5853cb26f8a155c90bb80a3e341f021f497ef77496311ab6ba01f38c561e50d3", "d1b81480fc74e86cc1bb2d28123e1107c23c9055afd935b396b264df60e42dba");
+
+var saveScore = ncmb.DataStore("BricksGame");
+
+
 var SETTINGS_GRAVITY = 0.07,
     SETTINGS_FPS = 30,
     SETTINGS_BALL_NUM = 1,
@@ -249,11 +254,25 @@ var BB = {
         rankingLabel.interactive = true;
         rankingLabel.click = rankingLabel.tap = function(data) {
             // 【ncmb】ランキング取得
-            var result = get_mb();
-            var rankingTable = new PIXI.Text(result, {font: "24px/1.2 vt", fill: "red"});
+          
+        var result = "RANKING：";
+        saveScore.order("score",true).limit(5).fetchAll()
+        .then(function(objects){
+          for (var i=0; i<objects.length; i++) {
+              var name = objects[i].get("name");
+              var score = objects[i].get("score");
+              result = result + "\n " + (i+1) + "番: "+ name + "さん - " + score + "点";
+          }
+            var rankingTable = new PIXI.Text(result, {font: "24px/1.2 vt", fill: "yellow"});
             rankingTable.position.x = 50;
-            rankingTable.position.y = 220;
+            rankingTable.position.y = 240;
             BB.stage.addChild(rankingTable);
+          //alert(result);
+        })
+        .catch(function(err){
+          console.log("Error: " + err);
+        })
+
         };
         setTimeout(function() {
             rankingLabel.setText("RANKING"); //for Android
