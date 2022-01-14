@@ -362,7 +362,8 @@ function init() {
     window.addEventListener("mousemove", function(e) {
         if(BB.isMouseDown) BB.paddle.position.x = e.clientX;
     });
-    
+  
+
     window.addEventListener("keydown", function(e) {
         switch (e.which) {
             case 37:
@@ -386,7 +387,15 @@ function init() {
 // Render callback
 function animate() {
     if (BB.gameState === GAMESTATE_PLAY) {
-    
+        if ((BB.score > 600)&&(SETTINGS_BALL_NUM<2)) {
+          SETTINGS_BALL_NUM = 2;
+          BB.addBall();
+        }
+        if ((BB.score > 3000)&&(SETTINGS_BALL_NUM<3)) {
+          SETTINGS_BALL_NUM = 3;
+          BB.addBall();
+        }
+
         //Move the paddle
         BB.paddle.position.x -= BB.paddle.accel;
         if (BB.paddle.position.x - (BB.paddle.width * 0.5) < 0) {
@@ -425,6 +434,8 @@ function animate() {
                 ball.delta.y *= -1 * SETTINGS_BOUND_Y;
             }
             
+
+
             //Ball&blocks hit detection
             for(var j = BB.blocks.length - 1; j >= 0; j--) {
                 var block = BB.blocks[j];
