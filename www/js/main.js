@@ -58,7 +58,9 @@ var BB = {
             [null,      null,       null,       null,       null,       null,   null,       null,       null,       null],
             [null,      null,       null,       null,       null,       null,   null,       null,       null,       null],
             [null,      null,       null,       null,       null,       null,   null,       null,       null,       null],
-            ['silver',      'silver',       'silver',       'silver',       'silver',   'silver',   'silver',   'silver',       'silver',       'silver'],
+            ['silver',      'silver',       'blue',       'silver',       'silver',   'silver',   'silver',   'blue',       'silver',       'silver'],
+            ['silver',      'blue',       'red',       'blue',       'silver',   'silver',   'blue',   'red',       'blue',       'silver'],
+            ['silver',      'silver',       'blue',       'silver',       'silver',   'silver',   'silver',   'blue',       'silver',       'silver'],
         ];
         
         var position = parseInt(BB.renderer.width * 0.5) - (5 * 30)
@@ -387,11 +389,11 @@ function init() {
 // Render callback
 function animate() {
     if (BB.gameState === GAMESTATE_PLAY) {
-        if ((BB.score > 600)&&(SETTINGS_BALL_NUM<2)) {
+        if ((BB.score > 1000)&&(SETTINGS_BALL_NUM<2)) {
           SETTINGS_BALL_NUM = 2;
           BB.addBall();
         }
-        if ((BB.score > 3000)&&(SETTINGS_BALL_NUM<3)) {
+        if ((BB.score > 5000)&&(SETTINGS_BALL_NUM<3)) {
           SETTINGS_BALL_NUM = 3;
           BB.addBall();
         }
