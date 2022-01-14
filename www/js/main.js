@@ -19,6 +19,8 @@ var SETTINGS_GRAVITY = 0.07,
 var GAMESTATE_STOP = 0,
     GAMESTATE_PLAY = 1;
 
+var rankingDisplay = 0;
+
 //var accelerationWatch = null;
 
 var imgPath = {
@@ -256,24 +258,26 @@ var BB = {
         rankingLabel.interactive = true;
         rankingLabel.click = rankingLabel.tap = function(data) {
             // 【ncmb】ランキング取得
-          
-        var result = "RANKING：";
-        saveScore.order("score",true).limit(5).fetchAll()
-        .then(function(objects){
-          for (var i=0; i<objects.length; i++) {
-              var name = objects[i].get("name");
-              var score = objects[i].get("score");
-              result = result + "\n " + (i+1) + "番: "+ name + "さん - " + score + "点";
-          }
-            var rankingTable = new PIXI.Text(result, {font: "24px/1.2 vt", fill: "yellow"});
-            rankingTable.position.x = 50;
-            rankingTable.position.y = 240;
-            BB.stage.addChild(rankingTable);
-          //alert(result);
-        })
-        .catch(function(err){
-          console.log("Error: " + err);
-        })
+        if (rankingDisplay == 0) {
+            var result = "RANKING：";
+            rankingDisplay = 1;
+            saveScore.order("score",true).limit(5).fetchAll()
+            .then(function(objects){
+              for (var i=0; i<objects.length; i++) {
+                  var name = objects[i].get("name");
+                  var score = objects[i].get("score");
+                  result = result + "\n " + (i+1) + "番: "+ name + "さん - " + score + "点";
+              }
+                var rankingTable = new PIXI.Text(result, {font: "24px/1.2 vt", fill: "yellow"});
+                rankingTable.position.x = 50;
+                rankingTable.position.y = 260;
+                BB.stage.addChild(rankingTable);
+              //alert(result);
+            })
+            .catch(function(err){
+              console.log("Error: " + err);
+            })
+        }
 
         };
         setTimeout(function() {
